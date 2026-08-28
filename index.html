@@ -1,390 +1,154 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boas-Vindas · Cadastro Neon</title>
-  <!-- CSS interno para fácil manutenção -->
-  <style>
-    /* Reset básico e fonte */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boas-vindas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(145deg, #0b1c2f 0%, #1a3b5a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 2.5rem;
-      padding: 2.8rem 2.5rem;
-      max-width: 500px;
-      width: 100%;
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
-      transition: transform 0.2s ease;
-    }
+        .welcome-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
 
-    .card:hover {
-      transform: scale(1.01);
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    h1 {
-      font-size: 2.6rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #f0f9ff;
-      margin-bottom: 0.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
+        .welcome-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
 
-    h1 small {
-      font-size: 1rem;
-      font-weight: 400;
-      background: #2d5f7e;
-      padding: 0.1rem 0.8rem;
-      border-radius: 40px;
-      color: #d4e9ff;
-      margin-left: 0.3rem;
-      letter-spacing: normal;
-    }
+        h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
 
-    .subtitle {
-      color: #b0d4f0;
-      margin-bottom: 2rem;
-      font-size: 1rem;
-      border-left: 3px solid #4a9eff;
-      padding-left: 1rem;
-      opacity: 0.85;
-    }
+        .subtitle {
+            color: #4a5568;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
 
-    .form-group {
-      margin-bottom: 1.6rem;
-    }
+        .welcome-message {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+            text-align: left;
+            line-height: 1.7;
+            color: #2d3748;
+        }
 
-    label {
-      display: block;
-      color: #d6eaff;
-      font-weight: 500;
-      font-size: 0.9rem;
-      letter-spacing: 0.02em;
-      margin-bottom: 0.4rem;
-    }
+        .welcome-message p {
+            margin-bottom: 10px;
+        }
 
-    .input-wrapper {
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 60px;
-      padding: 0.1rem 0.1rem 0.1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.25s;
-    }
+        .welcome-message p:last-child {
+            margin-bottom: 0;
+        }
 
-    .input-wrapper:focus-within {
-      border-color: #6ab0ff;
-      background: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.25);
-    }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
 
-    .input-wrapper input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      padding: 0.9rem 0;
-      color: #f0f9ff;
-      font-size: 1rem;
-      outline: none;
-    }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
 
-    .input-wrapper input::placeholder {
-      color: #99bcdb;
-      font-weight: 300;
-      opacity: 0.6;
-    }
+        .btn:active {
+            transform: translateY(0);
+        }
 
-    /* Ícone decorativo (opcional) */
-    .input-wrapper .icon {
-      padding-right: 0.5rem;
-      color: #6a9fc9;
-      font-size: 1.1rem;
-    }
+        .footer {
+            margin-top: 25px;
+            color: #a0aec0;
+            font-size: 0.85rem;
+        }
 
-    .btn-enviar {
-      width: 100%;
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      border: none;
-      padding: 1rem 1.2rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: white;
-      letter-spacing: 0.03em;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-      margin-top: 0.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .welcome-container {
+                padding: 30px 20px;
+            }
 
-    .btn-enviar:hover {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      transform: scale(1.02);
-      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.5);
-    }
+            h1 {
+                font-size: 2rem;
+            }
 
-    .btn-enviar:active {
-      transform: scale(0.97);
-    }
+            .subtitle {
+                font-size: 1rem;
+            }
 
-    .status-msg {
-      margin-top: 1.8rem;
-      padding: 0.9rem 1.2rem;
-      border-radius: 50px;
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(4px);
-      color: #d6eaff;
-      font-size: 0.95rem;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s;
-      min-height: 4.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      word-break: break-word;
-    }
-
-    .status-msg.success {
-      background: rgba(34, 197, 94, 0.2);
-      border-color: #22c55e;
-      color: #b8f0c8;
-    }
-
-    .status-msg.error {
-      background: rgba(239, 68, 68, 0.2);
-      border-color: #ef4444;
-      color: #fccfcf;
-    }
-
-    .status-msg.loading {
-      background: rgba(251, 191, 36, 0.15);
-      border-color: #fbbf24;
-      color: #fde68a;
-    }
-
-    .footer-note {
-      margin-top: 1.8rem;
-      color: #7da1c2;
-      font-size: 0.75rem;
-      text-align: center;
-      opacity: 0.5;
-      letter-spacing: 0.02em;
-    }
-
-    /* Responsivo */
-    @media (max-width: 480px) {
-      .card {
-        padding: 2rem 1.5rem;
-      }
-      h1 {
-        font-size: 2rem;
-        flex-wrap: wrap;
-      }
-      .input-wrapper {
-        padding-left: 1rem;
-      }
-    }
-  </style>
+            .welcome-icon {
+                font-size: 48px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>
-      👋 Boas-vindas
-      <small>Neon</small>
-    </h1>
-    <div class="subtitle">Cadastre seu nome e telefone</div>
 
-    <form id="cadastroForm">
-      <div class="form-group">
-        <label for="nome">Nome completo</label>
-        <div class="input-wrapper">
-          <span class="icon">👤</span>
-          <input type="text" id="nome" placeholder="Ex: Ana Silva" required>
+    <div class="welcome-container">
+        <div class="welcome-icon">👋</div>
+        <h1>Bem-vindo!</h1>
+        <p class="subtitle">É um prazer ter você aqui</p>
+
+        <div class="welcome-message">
+            <p>🌟 <strong>Olá, visitante!</strong></p>
+            <p>Esta é uma página de boas-vindas criada com HTML e CSS.</p>
+            <p>✨ Sinta-se à vontade para explorar e personalizar conforme sua necessidade.</p>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="telefone">Telefone</label>
-        <div class="input-wrapper">
-          <span class="icon">📞</span>
-          <input type="tel" id="telefone" placeholder="(11) 99999-9999" required>
+        <a href="#" class="btn">Começar</a>
+
+        <div class="footer">
+            &copy; 2024 · Todos os direitos reservados
         </div>
-      </div>
-
-      <button type="submit" class="btn-enviar">
-        <span>📨</span> Enviar
-      </button>
-    </form>
-
-    <div id="statusMessage" class="status-msg">
-      ✨ Preencha os campos e envie.
     </div>
-    <div class="footer-note">
-      neon · banco de dados PostgreSQL
-    </div>
-  </div>
 
-  <script>
-    (function() {
-      const form = document.getElementById('cadastroForm');
-      const statusDiv = document.getElementById('statusMessage');
-
-      // 🔐 URL de conexão fornecida (com senha e host)
-      const DATABASE_URL = 'postgresql://neondb_owner:npg_vQhO8yH6Dptk@ep-steep-grass-aycw03y2-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
-
-      // Função para mostrar mensagem de status (loading, sucesso, erro)
-      function setStatus(message, type = 'info') {
-        statusDiv.textContent = message;
-        statusDiv.className = 'status-msg'; // reseta classes extras
-        if (type === 'success') {
-          statusDiv.classList.add('success');
-        } else if (type === 'error') {
-          statusDiv.classList.add('error');
-        } else if (type === 'loading') {
-          statusDiv.classList.add('loading');
-        }
-      }
-
-      // Função para enviar os dados para o banco Neon via API REST (supondo que o Neon forneça endpoint HTTP)
-      // Nota: Neon disponibiliza API para executar queries via HTTP utilizando /sql ou /query.
-      // Aqui usamos o padrão: https://<host>/sql com autenticação via Basic Auth ou Bearer.
-      // Como a string de conexão tem user:pass, usaremos Basic Auth.
-      async function enviarParaNeon(nome, telefone) {
-        // Extrair host, user, password da connection string
-        // Exemplo: postgresql://neondb_owner:npg_vQhO8yH6Dptk@ep-steep-grass-aycw03y2-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require
-        // Vamos montar a URL base para API HTTP do Neon.
-        // Documentação Neon: https://neon.tech/docs/reference/cloud-api
-        // Endpoint de query: https://<project>.neon.tech/sql
-        // Mas como temos um pooler, usamos o host do pooler para API também (geralmente funciona).
-        // Construímos a URL com base no host fornecido.
-        const urlObj = new URL(DATABASE_URL);
-        const host = urlObj.hostname;
-        const user = urlObj.username;   // neondb_owner
-        const password = urlObj.password;
-        const database = urlObj.pathname.replace('/', ''); // neondb
-        // Usamos a URL base: https://<host>/sql (ou /api/v2/sql)
-        // Neon recomenda: https://<host>/sql?database=<db>
-        const apiUrl = `https://${host}/sql?database=${database}`;
-
-        // SQL para inserir dados na tabela "cadastro"
-        // A tabela já possui 1 ID registrado, então deixamos o ID auto-increment (serial).
-        const sql = `INSERT INTO cadastro (nome, telefone) VALUES ($1, $2) RETURNING id;`;
-
-        // Cabeçalhos com autenticação Basic
-        const headers = new Headers();
-        headers.set('Authorization', 'Basic ' + btoa(`${user}:${password}`));
-        headers.set('Content-Type', 'application/json');
-
-        const payload = {
-          query: sql,
-          params: [nome, telefone]
-        };
-
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Erro HTTP ${response.status}: ${errorText}`);
-        }
-
-        const result = await response.json();
-        // O retorno esperado: { result: [ { id: ... } ] } ou similar
-        // Neon retorna um array de resultados.
-        return result;
-      }
-
-      // Manipulador do submit
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const nomeInput = document.getElementById('nome');
-        const telefoneInput = document.getElementById('telefone');
-
-        const nome = nomeInput.value.trim();
-        const telefone = telefoneInput.value.trim();
-
-        // Validação simples
-        if (!nome || !telefone) {
-          setStatus('⚠️ Preencha todos os campos.', 'error');
-          return;
-        }
-
-        // Mostrar loading
-        setStatus('⏳ Enviando dados para o Neon...', 'loading');
-
-        try {
-          // Chamar a função que envia para o Neon
-          const resultado = await enviarParaNeon(nome, telefone);
-          console.log('Resposta Neon:', resultado);
-
-          // Verifica se a inserção foi bem-sucedida (verifica se retornou algum ID)
-          // Estrutura comum: { result: [ { id: 2 } ] } ou { rows: [ { id: 2 } ] }
-          let idInserido = null;
-          if (resultado && resultado.result && Array.isArray(resultado.result) && resultado.result.length > 0) {
-            idInserido = resultado.result[0].id;
-          } else if (resultado && resultado.rows && Array.isArray(resultado.rows) && resultado.rows.length > 0) {
-            idInserido = resultado.rows[0].id;
-          } else if (resultado && resultado.id) {
-            idInserido = resultado.id;
-          }
-
-          if (idInserido !== null && idInserido !== undefined) {
-            setStatus(`✅ Cadastro realizado! ID: ${idInserido} — Bem-vindo(a) ${nome}!`, 'success');
-            // Limpa campos (opcional)
-            nomeInput.value = '';
-            telefoneInput.value = '';
-          } else {
-            // Se não encontrou ID, mas a resposta foi 2xx, consideramos sucesso genérico
-            setStatus(`✅ Dados enviados com sucesso! (ID não retornado)`, 'success');
-            nomeInput.value = '';
-            telefoneInput.value = '';
-          }
-        } catch (error) {
-          console.error('Erro ao enviar para Neon:', error);
-          // Mensagem amigável
-          let erroMsg = '❌ Falha ao enviar. Tente novamente mais tarde.';
-          if (error.message) {
-            erroMsg += ` (${error.message})`;
-          }
-          setStatus(erroMsg, 'error');
-        }
-      });
-
-      // Mensagem inicial já está no HTML, mas podemos reforçar
-      setStatus('✨ Preencha os campos e envie.', 'info');
-
-    })();
-  </script>
 </body>
 </html>
